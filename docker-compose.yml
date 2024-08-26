@@ -1,0 +1,18 @@
+version: "3.9"
+services:
+  sd:
+    build: .
+    ports:
+      - "7860:7860"
+    volumes:
+      - ./models:/SD/stable-diffusion-webui-forge/models/
+      - ./repositories:/SD/stable-diffusion-webui-forge/repositories/
+      - ./extensions:/SD/stable-diffusion-webui-forge/extensions/
+      - ./outputs:/SD/stable-diffusion-webui-forge/outputs/
+    devices:
+      - '/dev/kfd:/dev/kfd'
+      - '/dev/dri:/dev/dri'
+    security_opt:
+      - seccomp:unconfined
+    group_add:
+      - video
